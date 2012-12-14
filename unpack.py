@@ -16,7 +16,8 @@ def iterdir(currentdir, filelist):
     for filename in filelist:
         f = os.path.join(currentdir, filename)
         if f.endswith(".rar"):
-            subprocess.call(['unrar', 'x', f])
+            subprocess.call(['unrar', '-o-', '-inul', 'x', f]) #the magic happens here
+### remove "-inul" to see progress and warnings
         elif os.path.isdir(f):
             iterdir(f, os.listdir(f))
 
